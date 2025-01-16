@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zu">
+<head>
+    <meta charset="UTF-8">
+    <m
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sifela - Modern Hymnal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>Sifela</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #60a5fa;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+        }
+
+        .hymn-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hymn-container:hover {
+            transform: translateY(-4px);
+        }
+
+        .hymn-number {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hymn-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .verse {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .verse-number {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .chorus {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: rgba(37,99,235,0.1);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .chorus-label {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .hymn-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1><i class="fas fa-book-open"></i> LIPINA ZA KULUMBEKA MULIMU</h1>
+    </header>
+    
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search hymns..." id="search-input">
+    </div>
+
+    <div id="hymns-container">
+
+    
+
+    <!-- First Hymn -->
+    <div class="hymn-container">
+        <div class="hymn-number">1.</div>
+        <div class="hymn-title">Ha Ka Taha</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Hakataha, hakataha<br>
+            Kutoputa batu<br>
+            Kamukana balumeli<br>
+            Babalatiwa.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus:</div>
+            Kusiwana ni lineleli<br>
+            Kubenga hahulu<br>
+            Mwa mushiske na Jesu<br>
+            Baubenyise.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Utaputa, kuputela<br>
+            Batu mwa Mubuso<br>
+            Kamukana babande-nde<br>
+            Babalatiwa.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Banana babanyi-nyani<br>
+            Babalata Jesu<br>
+            Ki bona ba Jesu<br>
+            Babalatiwa.
+        </div>
+    </div>
+
+    <!--2-->
+    <div class="hymn-container">
+        <div class="hymn-number">2.</div>
+        <div class="hymn-title">Wa Ni Lata</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Wa ni lata, na ziba<br/>
+            Kubulela bibele<br/>
+            Bana ka ba Jesu<br/>
+            Bafokola, yena nyaa.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus:</div>
+            Ee, wa ni lata, <br/>
+            Wa ni lata,<br/>
+            Wa ni lata,<br/>
+            Kubulela linzwi.
+        </div>
+
+        <!-- Add more verses as needed -->
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Wa ni lata, naash-wile<br/>
+        Kukupela mukoyo<br/>
+        Utatapesis bila<br/>
+        Jesu relikenga.
+        </div>
+
+        
+        <div class="verse"></div>
+            <span class="verse-number">4.</span>
+            Wa ni lata uina <br/>
+            fa kaufi-kaufi <br/>
+            Haiba nimulata <br/>
+            nitaya kwa halimu.
+        </div>
+
+    <!--3-->
+    <div class="hymn-container">
+        <div class="hymn-number">3.</div>
+        <div class="hymn-title">Ni Hupula Lifasi Lelinde</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Ni huplula fisi lelinde <br/>
+            kacenu<br/>
+            Ni yofita manzibwa<br/>
+            Ha ni yoyema<br/>
+            Kwatukwaa Mulena <br/>
+            Musukwe waka utakanya.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus</div>
+            Kuyoba ni linalehi
+            Kuwa mushukwe <br/>
+            Haisali manzibwa <br/>
+            Hanizuha mwa mandu <br/>
+            Akupumula <br/>
+            Musukwe waka <br/>
+            Utakanya.
+        </div>
+
+        <!-- Add more verses as needed -->
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Ka maata aMulena <br/>
+            Niksabeseza <br/>
+            Niyemela kutisa batu <br/>
+            Haiba ena yehova <br/>
+            Libe zaka <br/>
+            Hakutumwila mpupulisi.
+        </div>
+
+        
+        <div class="verse"></div>
+            <span class="verse-number">3.</span>
+            Nitayotaba hanibona Jesu <br/>
+            Kuyolula batu kuyena <br/>
+            Niyoba ni nyakalalo <br/>
+            Mwa Litoma <br/>
+            Ha mushukwe waka <br/>
+            Utakanya.
+        </div>
+    </div>
+
+    <!--4-->
+    <div class="hymn-container">
+        <div class="hymn-number">4.</div>
+        <div class="hymn-title">Licwe La Myaha Myaha</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Licwe la myaha myaha <br/>
+            Nipate kuwena <br/>
+            Mezi no ona mali <br/>
+            Azwisizwe kuwena <br/>
+            Libe naka ya sibi <br/>
+            Unipuluse luli 
+pulusa.
+        </div>
+<div class="verse">
+            <span class="verse-number">2.</span>
+            Ka musebezi waka <br/>
+            Mulawo haupetwi <br/>
+            Nikaba ni ciseho <br/>
+            Nihanilila miyoko <br/>
+            sibi hasitakuhi <br/>
+            Wena feela pulusa.
+        </div> 
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Hanina sakutisana <br/>
+            Nita kwa sifapano <br/>
+            Nita nitaapeswa <br/>
+            Ni kukupa muhau <br/>
+            Na nitezi masila <br/>
+            Unitapise lesu.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">4.</span>
+            Hanise nibatoshwa <br/>s
+            Mi senikwala meeto <br/>
+            Haniya kwa halimu <br/>
+            Kauli fa lubona <br/>
+            Licwe la myaha myaha <br/>
+            Niitapise kuwena.
+        </div>
+
+    </div>
+
+    <!--5-->
+    <div class="hymn-container">
+        <div class="hymn-number">5.</div>
+        <div class="hymn-title">Lizazi La Moya Waka</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Licwe la myaha myaha <br/>
+            Lizazi la moya waka <br/>
+            Mupulusi ya lateha<br/>
+            Inge kukatokwa lilu <br/>
+            Lelinipata ku wena <br/>
+            
+pulusa.
+        </div>
+<div class="verse">
+            <span class="verse-number">2.</span>
+            Ni kwa ku lobala kwaka <br/>
+            Ibe nino ku hupula <br/>
+            Kuli ni pumule hande <br/>
+            Fa sifuba sa munabupilo <br/>
+             
+        </div> 
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Musihali kaufela <br/>
+            Ina nina ninopila <br/>
+            Ina nina ni busihu <br/>
+            Hauli siyo nasaba <br/>
+            
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">4.</span>
+            Hanizuha unituse <br/>
+            Ni sikaya mwa lifasi <br/>
+            Mane ka lilato lahao <br/>
+            Miyofita kwa halimu <br/>
+            
+        </div>
+
+    </div>
+
+    <!-- 6 -->
+    <div class="hymn-container">
+        <div class="hymn-number">6.</div>
+        <div class="hymn-title">Mulimu Ayoba Ni Mina</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Mulimu ayoba ni mina  <br>
+            Amibonise mwa nzila <br>
+            Amisileleze yena <br>
+            Mulimu ayoba ni mina.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus</div>
+            Mutalu kopana fapilaa <br>
+            mulena <br>
+            Mutalu... kopana mulimu <br>
+            Ayoba. <br/>
+            Nimina.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Mulimu ayoba ni mina  <br>
+            Ni mwa ma yando amina <br>
+            Amituse ka lilato<br>
+            Mulimu ayoba ni mina.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Mulimu ayoba ni mina <br>
+            Amibonise muhau <br>
+            Azwise kushwa ku mina <br>
+            Mulimu ayoba ni mina.
+        </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="hymn-container">
+        <div class="hymn-number">7.</div>
+        <div class="hymn-title">Lwakulumbeka</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Lwakulumbeka mulena <br>
+            Lunze lutabela wena <br>
+            Lusapila hamunati <br>
+            Ulubabalezi Ndate.
+        </div>
+
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Lupulusizwe ka musa <br>
+            Kalituso zemde zahawo <br>
+            Kali lilato lelituna <br>
+            Ulubonisize nzila.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Tusa cwale bana bahawo <br>
+            Bamamele za mulawo <br>
+            Ibe joko yebubebe <br>
+            Yelulwala lutabile.
+        </div>
+
+
+    </div>
+
+    <!-- 8 -->
+    <div class="hymn-container">
+        <div class="hymn-number">8.</div>
+        <div class="hymn-title">Muwabelwe Ufitile</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Mwanelwe Ufitile  <br>
+            Jesu naka Yabatu <br>
+            Ulilato ki yomunde <br>
+            Bizo ahae ki jesu.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus</div>
+            Libizo lelilatwa <br>
+            Ki lelinde kamuta <br>
+            Halilumbwa ki batu <br>
+            Libizo la jesu.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            HAkunani yaswabie<br>
+            Yasufezi mwapilu <br>
+            Atolulela bukiti <br>
+            Mwa mahutu a jesu.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Ni libi zensu zenata <br>
+            zemiisa kwa lifu <br>
+            Ulitakuzi kaufela <br>
+            Mulumele ku jesu.
+        </div>
+    </div>
+
+     <!-- 9 -->
+     <div class="hymn-container">
+        <div class="hymn-number">9.</div>
+        <div class="hymn-title">Calela Jesu</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Cala kakusasani <br>
+            Lipeu za musa <br>
+            Cala musihali <br>
+            Ni manzibwana <br/>
+            Yemela kutulo <br/>
+            Nako ya kutulo <br/>
+            Lutata ka tabo <br/>
+            Tisa manata.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus:</div>
+            Tisa manata, tisa manata <br>
+            Lutata ka tabo, tisa manata <br>
+            Tisa manata, Tisa manata <br>
+            Lutata ka tabo, tisa manata.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Lucale mwa liseli <br>
+            Ni mwa lififi  <br>
+            Lusasabi malu <br>
+            Kapa silami <br/>
+            Mi kapili-pili <br/>
+            Kutulo Ya fela <br/>
+            Lutaba ka tabo <br/>
+            Tisa manata.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Aluye latila <br>
+            Lucalela jesu <br>
+            Niha moya waluna <br>
+            Lufeza kulila <br/>
+            Lutaamuhela <br/>
+            Lutata ka tabo <br/>
+            Tisa Manata.
+        </div>
+    </div>
+
+     <!-- 10 -->
+     <div class="hymn-container">
+        <div class="hymn-number">10.</div>
+        <div class="hymn-title">Sinifiteleli Jesu</div>
+        
+        <div class="verse">
+            <span class="verse-number">1.</span>
+            Sinifiteleli jesu  <br>
+            Utwa tapelo  <br>
+            Mopotela ku babanwi <br>
+            Sinifiteleli.
+        </div>
+
+        <div class="chorus">
+            <div class="chorus-label">Chorus</div>
+            Jesu jesu <br>
+            Utwa tapelo <br>
+            Mopotela ku babanwi <br>
+            Sinifiteleli.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">2.</span>
+            Kwa lubona lwa muhau <br>
+            Nibone tuso <br>
+            Nikubame ka likute <br>
+            Nituse jesu.
+        </div>
+
+        <div class="verse">
+            <span class="verse-number">3.</span>
+            Nakusepa mutusi <br>
+            Nakulapela <br>
+            Unifolisize pilu <br>
+            Unipuluse.
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Scroll to top button
+        const scrollButton = document.getElementById('scroll-top');
+        scrollButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Show/hide scroll button
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollButton.style.opacity = '1';
+            } else {
+                scrollButton.style.opacity = '0';
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const hymns = document.querySelectorAll('.hymn-container');
+            
+            hymns.forEach(hymn => {
+                const text = hymn.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    hymn.style.display = 'block';
+                } else {
+                    hymn.style.display = 'none';
+                }
+            });
+        });
+
+        // Load hymns with animation
+        const hymnsContainer = document.getElementById('hymns-container');
+        const originalHymns = document.querySelectorAll('.hymn-container');
+        
+        originalHymns.forEach((hymn, index) => {
+            const clonedHymn = hymn.cloneNode(true);
+            clonedHymn.setAttribute('data-aos', 'fade-up');
+            clonedHymn.setAttribute('data-aos-delay', (index * 100).toString());
+            hymnsContainer.appendChild(clonedHymn);
+        });
+    });
+</script>
+</body>
+<footer>
+
+</footer>
+</html>
